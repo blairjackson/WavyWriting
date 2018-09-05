@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+$divs: 100;
+$color: royalblue;
+$colorvary: 8;
+$size: 200px;
+
+body {
+    background: #000;
+    overflow: hidden;
+    padding: 20vh 0 0;
+    margin: 0;
+}
+
+
+div {
+    color:$color;
+    font-family: 'Montserrat',sans-serif;
+    font-size: 5vmax;
+    position: absolute;
+    animation: slide 6s infinite ease-in-out, huey 10s infinite;
+    background-color: transparent;
+    opacity: 1;
+    //height: 10px;
+    width: $size;
+   // border-top-width: 1px;
+   // border-top-style: solid;
+    //transform: rotate(-20deg) translate3d(0, 0, 0);
+
+    // &:after,
+    // &:before {
+    //     content: '';
+    //     position: absolute;
+    //     top: -2px;
+    //     //width: 5px;
+    //    // height: 5px;
+    // }
+
+    // &:before {
+    //     left: 0;
+    // }
+
+    // &:after {
+    //     right: 0;
+    // }
+}
+
+@for $i from 1 to $divs {
+    div:nth-child(#{$i}) {
+        $thisColor: adjust-hue($color, $colorvary*$i);
+        left: $i*6 + vw;
+        border-color: $thisColor;
+        animation-delay: $i * -.3 + s, 0s;
+        top: 35vh;
+
+        // &:before,
+        // &:after {
+        //     background-color: $thisColor;
+        // }
+    }
+}
+
+@keyframes slide {
+    50% {
+        transform: translateY(40vh) rotate(-20deg) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes huey {
+    to {
+        filter: hue-rotate(360deg)
+    }
+}
